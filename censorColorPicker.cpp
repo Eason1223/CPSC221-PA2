@@ -27,6 +27,7 @@ double PointDistance(PixelPoint a, PixelPoint b) {
 CensorColorPicker::CensorColorPicker(unsigned int b_width, PixelPoint ctr, unsigned int rad, PNG& inputimage)
 {
   // complete your implementation below
+  img = inputimage;
   
 }
 
