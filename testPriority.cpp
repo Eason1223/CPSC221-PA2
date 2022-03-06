@@ -45,9 +45,9 @@ TEST_CASE("PriorityNeighbours::insertion_removal_isempty", "[weight=1][part=prio
   pn.Insert(pp1);
   pn.Insert(pp3);
   pn.Insert(pp2);
-
   while (!pn.IsEmpty()) {
-    result.push_back(pn.Remove());
+    PixelPoint temp_point=pn.Remove();
+    result.push_back(temp_point);
   }
   REQUIRE(result == expected);
 }
