@@ -14,6 +14,8 @@
 */
 
 #include "priority.h"
+#include <cmath>
+#include <cstdlib>
 #include <assert.h>
 
 using namespace cs221util;

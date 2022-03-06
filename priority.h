@@ -23,6 +23,7 @@
 #include "pixelpoint.h"
 
 #include <vector>
+#include <cstdlib>
 
 using namespace cs221util;
 using namespace std;

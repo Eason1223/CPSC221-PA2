@@ -30,8 +30,11 @@ Stack<T>::~Stack()
 {
   // complete your implementation below
   delete items;
+  items = nullptr;
 
 }
+
+
 
 /*
 *  Adds the parameter object to the top of the Stack. That is, the
@@ -65,24 +68,39 @@ void Stack<T>::Push(const T& item) {
 *
 *  RETURN: the element that used to be at the top of the Stack.
 */
+// template <class T>
+// T Stack<T>::Pop() {
+//   // complete your implementation below
+//   num_items--;
+//   T item = items[ num_items ];
+//   items[ num_items ] = NULL;
+
+//   if( (num_items)/(max_items) < (1.0 / SHRINKRATE) ){
+//     if((max_items / EXPANSIONFACTOR)>DEFAULTCAPACITY){
+//       Resize((max_items / EXPANSIONFACTOR));
+//     }
+//     else{
+//       Resize(DEFAULTCAPACITY);
+//     }
+    
+    
+//   }   
+//   return item;
+// };
+
 template <class T>
 T Stack<T>::Pop() {
   // complete your implementation below
+  T item=items[Size()-1];
+  items[Size()-1]=NULL;
   num_items--;
-  T item = items[ num_items ];
-  items[ num_items ] = NULL;
+  if(num_items<(1.0/SHRINKRATE)*Capacity()){
+    size_t newsize=fmax(max_items/EXPANSIONFACTOR,DEFAULTCAPACITY);
+    Resize(newsize);
+  }
+  /*T item;      // REPLACE THESE LINES*/
 
-  if( (num_items)/(max_items) < (1.0 / SHRINKRATE) ){
-    if((max_items / EXPANSIONFACTOR)>DEFAULTCAPACITY){
-      Resize((max_items / EXPANSIONFACTOR));
-    }
-    else{
-      Resize(DEFAULTCAPACITY);
-    }
-    
-    
-  }   
-  return item;
+  return item; // REPLACE THESE LINES
 };
 
 /*
@@ -189,5 +207,8 @@ void Stack<T>::Resize(size_t n) {
   }
   delete items;
   items = temp;
+  temp = nullptr;
+  max_items = n;
 
 };
+
