@@ -119,10 +119,10 @@ template <template <class T> class OrderingStructure> animation filler::Fill(Fil
       if(p.x+1<config.img.width()){
         if(config.img.getPixel(p.x+1,p.y)->dist(config.seedpoint.color)<=config.tolerance){
           PixelPoint newadd;
-        newadd.x=p.x+1;
-        newadd.y=p.y;
-        newadd.color=*(config.img.getPixel(p.x+1,p.y));
-        config.neighbourorder.Insert(newadd);
+          newadd.x=p.x+1;
+          newadd.y=p.y;
+          newadd.color=*(config.img.getPixel(p.x+1,p.y));
+          config.neighbourorder.Insert(newadd);
         }
       }
       if(p.x>=1){
