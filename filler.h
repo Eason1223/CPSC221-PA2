@@ -67,6 +67,8 @@ namespace filler
 
   // Add any helper functions here
 
+  bool checkExist(vector<PixelPoint> processed, PixelPoint p);
+
 } // namespace filler
 
 #include "filler.cpp"

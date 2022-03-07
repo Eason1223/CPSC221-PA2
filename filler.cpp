@@ -14,7 +14,7 @@ animation filler::FillBFS(FillerConfig& config) {
   // complete your implementation below
   // You should replace the following line with a
   // correct call to fill.
-  return animation(); // REPLACE THIS STUB
+  return Fill<Queue>(config);
 }
 
 /*
@@ -27,7 +27,7 @@ animation filler::FillDFS(FillerConfig& config) {
   // complete your implementation below
   // You should replace the following line with a
   // correct call to fill.
-  return animation(); // REPLACE THIS STUB
+  return Fill<Stack>(config);
 }
 
 /*
@@ -105,6 +105,93 @@ template <template <class T> class OrderingStructure> animation filler::Fill(Fil
   // HINT: you will likely want to declare some kind of structure to track
   //       which pixels have already been visited
   
+  vector<PixelPoint> processed;
 
+  os.Add(config.seedpoint);
+  //anim.addFrame(config.img);
+
+  while(!os.IsEmpty()){
+
+    PixelPoint p = os.Remove();
+    
+    if( !checkExist(processed,p) ){
+      processed.push_back(p);
+      if(p.x+1<config.img.width()){
+        if(config.img.getPixel(p.x+1,p.y)->dist(config.seedpoint.color)<=config.tolerance){
+          PixelPoint newadd;
+        newadd.x=p.x+1;
+        newadd.y=p.y;
+        newadd.color=*(config.img.getPixel(p.x+1,p.y));
+        config.neighbourorder.Insert(newadd);
+        }
+      }
+      if(p.x>=1){
+        if(config.img.getPixel(p.x-1,p.y)->dist(config.seedpoint.color)<=config.tolerance){
+          PixelPoint newadd;
+          newadd.x=p.x-1;
+          newadd.y=p.y;
+          newadd.color=*(config.img.getPixel(p.x-1,p.y));
+          config.neighbourorder.Insert(newadd);
+        }
+      }
+      if(p.y+1<config.img.height()){
+        if(config.img.getPixel(p.x,p.y+1)->dist(config.seedpoint.color)<=config.tolerance){
+          PixelPoint newadd;
+          newadd.x=p.x;
+          newadd.y=p.y+1;
+          newadd.color=*(config.img.getPixel(p.x,p.y+1));
+          config.neighbourorder.Insert(newadd);
+        }
+        
+      }
+      if(p.y>=1){
+        if(config.img.getPixel(p.x,p.y-1)->dist(config.seedpoint.color)<=config.tolerance){
+          PixelPoint newadd;
+          newadd.x=p.x;
+          newadd.y=p.y-1;
+          newadd.color=*(config.img.getPixel(p.x,p.y-1));
+          config.neighbourorder.Insert(newadd);
+        }
+        
+      }
+      
+      while(!config.neighbourorder.IsEmpty()){
+        PixelPoint n = config.neighbourorder.Remove();
+        os.Add(n);
+      }
+
+      //change pixel
+      HSLAPixel color=config.picker->operator()(config.seedpoint);
+      config.img.getPixel(p.x,p.y)->h=color.h;
+      config.img.getPixel(p.x,p.y)->s=color.s;
+      config.img.getPixel(p.x,p.y)->l=color.l;
+      config.img.getPixel(p.x,p.y)->a=color.a;
+
+      framecount++;//add one fram
+      
+      if( framecount%config.frameFreq == 0){
+        anim.addFrame(config.img);
+      }
+
+    }
+
+  }
+
+  anim.addFrame(config.img);
   return anim;
+}
+
+bool filler::checkExist(vector<PixelPoint> processed, PixelPoint p){
+  
+  bool exist = false;
+  
+  for (int i = 0; i < processed.size(); i++){
+    if(processed[i] == p){
+      exist = true;
+    }
+  }
+
+  return exist;
+
+  
 }
