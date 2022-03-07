@@ -89,45 +89,45 @@ PNG testColorPicker(ColorPicker& picker)
     return img;
 }
 
-// TEST_CASE("colorPicker::basic solid","[weight=1][part=colorPicker]"){
+TEST_CASE("colorPicker::basic solid","[weight=1][part=colorPicker]"){
 
-//     HSLAPixel px;
-//     px.h = 0; px.s = 1.0; px.l = 0.5; // red
-//     SolidColorPicker solidPicker(px);
+    HSLAPixel px;
+    px.h = 0; px.s = 1.0; px.l = 0.5; // red
+    SolidColorPicker solidPicker(px);
 
-//     PNG result = testColorPicker(solidPicker);
-//     result.writeToFile("images/solidColorPickerTest.png");
-//     PNG expected; expected.readFromFile("soln_images/solidColorPickerTest.png");
-//     REQUIRE(result == expected);
+    PNG result = testColorPicker(solidPicker);
+    result.writeToFile("images/solidColorPickerTest.png");
+    PNG expected; expected.readFromFile("soln_images/solidColorPickerTest.png");
+    REQUIRE(result == expected);
     
-// }
+}
 
-// TEST_CASE("colorPicker::basic image tile","[weight=1][part=colorPicker]"){
+TEST_CASE("colorPicker::basic image tile","[weight=1][part=colorPicker]"){
     
-//     PNG imgtest, imgother;
-//     imgtest.readFromFile(IMGTILETESTIMAGE);
-//     imgother.readFromFile(IMGTILEOTHERIMAGE);
+    PNG imgtest, imgother;
+    imgtest.readFromFile(IMGTILETESTIMAGE);
+    imgother.readFromFile(IMGTILEOTHERIMAGE);
 
-//     ImageTileColorPicker imgtilePicker(imgother);
+    ImageTileColorPicker imgtilePicker(imgother);
 
-//     PNG result = testColorPicker(imgtilePicker);
-//     result.writeToFile("images/imageTileColorPickerTest.png");
-//     PNG expected; expected.readFromFile("soln_images/imageTileColorPickerTest.png");
-//     REQUIRE(result == expected);
-// }
+    PNG result = testColorPicker(imgtilePicker);
+    result.writeToFile("images/imageTileColorPickerTest.png");
+    PNG expected; expected.readFromFile("soln_images/imageTileColorPickerTest.png");
+    REQUIRE(result == expected);
+}
 
-// TEST_CASE("colorPicker::basic negative","[weight=1][part=colorPicker]"){
+TEST_CASE("colorPicker::basic negative","[weight=1][part=colorPicker]"){
 
-//     PNG imgtest;
-//     imgtest.readFromFile(NEGATIVETESTIMAGE);
+    PNG imgtest;
+    imgtest.readFromFile(NEGATIVETESTIMAGE);
 
-//     NegativeColorPicker negativePicker(imgtest);
+    NegativeColorPicker negativePicker(imgtest);
 
-//     PNG result = testColorPicker(negativePicker);
-//     result.writeToFile("images/negativeColorPickerTest.png");
-//     PNG expected; expected.readFromFile("soln_images/negativeColorPickerTest.png");
-//     REQUIRE(result == expected);
-// }
+    PNG result = testColorPicker(negativePicker);
+    result.writeToFile("images/negativeColorPickerTest.png");
+    PNG expected; expected.readFromFile("soln_images/negativeColorPickerTest.png");
+    REQUIRE(result == expected);
+}
 
 // TEST_CASE("colorPicker::basic censor", "[weight=1][part=colorPicker]") {
   
@@ -142,84 +142,84 @@ PNG testColorPicker(ColorPicker& picker)
 //   REQUIRE(result == expected);
 // }
 
-// TEST_CASE("colorPicker::basic rainbow","[weight=1][part=colorPicker]"){
-//     RainbowColorPicker rainPicker(1.0/1000.0);
+TEST_CASE("colorPicker::basic rainbow","[weight=1][part=colorPicker]"){
+    RainbowColorPicker rainPicker(1.0/1000.0);
 
-//     PNG result = testColorPicker(rainPicker);
-//     result.writeToFile("images/rainColorPickerTest.png");
-//     PNG expected; expected.readFromFile("soln_images/rainColorPickerTest.png");
-//     REQUIRE(result == expected);
-// }
+    PNG result = testColorPicker(rainPicker);
+    result.writeToFile("images/rainColorPickerTest.png");
+    PNG expected; expected.readFromFile("soln_images/rainColorPickerTest.png");
+    REQUIRE(result == expected);
+}
 
 
-// TEST_CASE("fill::basic solid dfs","[weight=1][part=fill]"){
+TEST_CASE("fill::basic solid dfs","[weight=1][part=fill]"){
     
-//     HSLAPixel px(100., 1.0, 0.5);
-//     SolidColorPicker solidPicker(px);
+    HSLAPixel px(100., 1.0, 0.5);
+    SolidColorPicker solidPicker(px);
 
-//     filler::FillerConfig solidconfig;
-//     solidconfig.img.readFromFile(SOLIDTESTIMAGE);
-//     solidconfig.frameFreq = SOLIDFRAMEFREQ;
-//     solidconfig.tolerance = SOLIDTOLERANCE;
-//     solidconfig.seedpoint = PixelPoint(SOLIDX, SOLIDY, *solidconfig.img.getPixel(SOLIDX,SOLIDY));
-//     solidconfig.picker = &solidPicker;
+    filler::FillerConfig solidconfig;
+    solidconfig.img.readFromFile(SOLIDTESTIMAGE);
+    solidconfig.frameFreq = SOLIDFRAMEFREQ;
+    solidconfig.tolerance = SOLIDTOLERANCE;
+    solidconfig.seedpoint = PixelPoint(SOLIDX, SOLIDY, *solidconfig.img.getPixel(SOLIDX,SOLIDY));
+    solidconfig.picker = &solidPicker;
 
-//     animation anim;
-//     anim = filler::FillDFS(solidconfig);
-//     PNG result = anim.write("images/dfssolid.gif"); 
-//     result.writeToFile("images/dfssolid.png");
+    animation anim;
+    anim = filler::FillDFS(solidconfig);
+    PNG result = anim.write("images/dfssolid.gif"); 
+    result.writeToFile("images/dfssolid.png");
 
-//     PNG expected; expected.readFromFile("soln_images/dfssolid.png");
-//     REQUIRE(result==expected);
+    PNG expected; expected.readFromFile("soln_images/dfssolid.png");
+    REQUIRE(result==expected);
 
-// }
+}
 
 
-// TEST_CASE("fill::basic solid bfs","[weight=1][part=fill]"){
+TEST_CASE("fill::basic solid bfs","[weight=1][part=fill]"){
     
-//     HSLAPixel px(100., 1.0, 0.5);
-//     SolidColorPicker solidPicker(px);
+    HSLAPixel px(100., 1.0, 0.5);
+    SolidColorPicker solidPicker(px);
 
-//     filler::FillerConfig solidconfig;
-//     solidconfig.img.readFromFile(SOLIDTESTIMAGE);
-//     solidconfig.frameFreq = SOLIDFRAMEFREQ;
-//     solidconfig.tolerance = SOLIDTOLERANCE;
-//     solidconfig.seedpoint = PixelPoint(SOLIDX, SOLIDY, *solidconfig.img.getPixel(SOLIDX, SOLIDY));
-//     solidconfig.picker = &solidPicker;
+    filler::FillerConfig solidconfig;
+    solidconfig.img.readFromFile(SOLIDTESTIMAGE);
+    solidconfig.frameFreq = SOLIDFRAMEFREQ;
+    solidconfig.tolerance = SOLIDTOLERANCE;
+    solidconfig.seedpoint = PixelPoint(SOLIDX, SOLIDY, *solidconfig.img.getPixel(SOLIDX, SOLIDY));
+    solidconfig.picker = &solidPicker;
 
-//     animation anim;
-//     anim = filler::FillBFS(solidconfig);
-//     PNG result = anim.write("images/bfssolid.gif");
-//     result.writeToFile("images/bfssolid.png");
+    animation anim;
+    anim = filler::FillBFS(solidconfig);
+    PNG result = anim.write("images/bfssolid.gif");
+    result.writeToFile("images/bfssolid.png");
 
-//     PNG expected; expected.readFromFile("soln_images/bfssolid.png");
-//     REQUIRE(result==expected);
-// }
+    PNG expected; expected.readFromFile("soln_images/bfssolid.png");
+    REQUIRE(result==expected);
+}
 
 
-// TEST_CASE("fill::basic image tile dfs","[weight=1][part=fill]"){
+TEST_CASE("fill::basic image tile dfs","[weight=1][part=fill]"){
     
-//     PNG tiletest;
-//     PNG tileother;
-//     tiletest.readFromFile(IMGTILETESTIMAGE);
-//     tileother.readFromFile(IMGTILEOTHERIMAGE);
-//     ImageTileColorPicker tilePicker(tileother);
+    PNG tiletest;
+    PNG tileother;
+    tiletest.readFromFile(IMGTILETESTIMAGE);
+    tileother.readFromFile(IMGTILEOTHERIMAGE);
+    ImageTileColorPicker tilePicker(tileother);
 
-//     filler::FillerConfig tileconfig;
-//     tileconfig.img = tiletest;
-//     tileconfig.frameFreq = IMGTILEFRAMEFREQ;
-//     tileconfig.tolerance = IMGTILETOLERANCE;
-//     tileconfig.seedpoint = PixelPoint(IMGTILEX, IMGTILEY, *tileconfig.img.getPixel(IMGTILEX, IMGTILEY));
-//     tileconfig.picker = &tilePicker;
+    filler::FillerConfig tileconfig;
+    tileconfig.img = tiletest;
+    tileconfig.frameFreq = IMGTILEFRAMEFREQ;
+    tileconfig.tolerance = IMGTILETOLERANCE;
+    tileconfig.seedpoint = PixelPoint(IMGTILEX, IMGTILEY, *tileconfig.img.getPixel(IMGTILEX, IMGTILEY));
+    tileconfig.picker = &tilePicker;
 
-//     animation anim;
-//     anim = filler::FillDFS(tileconfig);
-//     PNG result = anim.write("images/dfsimgtile.gif");
-//     result.writeToFile("images/dfsimgtile.png");
+    animation anim;
+    anim = filler::FillDFS(tileconfig);
+    PNG result = anim.write("images/dfsimgtile.gif");
+    result.writeToFile("images/dfsimgtile.png");
 
-//     PNG expected; expected.readFromFile("soln_images/dfsimgtile.png");
-//     REQUIRE(result==expected);
-// }
+    PNG expected; expected.readFromFile("soln_images/dfsimgtile.png");
+    REQUIRE(result==expected);
+}
 
 TEST_CASE("fill::basic image tile bfs","[weight=1][part=fill]"){
     
@@ -245,47 +245,47 @@ TEST_CASE("fill::basic image tile bfs","[weight=1][part=fill]"){
     REQUIRE(result==expected);
 }
 
-// TEST_CASE("fill::basic negative dfs", "[weight=1][part=fill]") {
-//     PNG negativetest;
-//     negativetest.readFromFile(NEGATIVETESTIMAGE);
-//     NegativeColorPicker negativePicker(negativetest);
+TEST_CASE("fill::basic negative dfs", "[weight=1][part=fill]") {
+    PNG negativetest;
+    negativetest.readFromFile(NEGATIVETESTIMAGE);
+    NegativeColorPicker negativePicker(negativetest);
 
-//     filler::FillerConfig negativeconfig;
-//     negativeconfig.img = negativetest;
-//     negativeconfig.frameFreq = NEGATIVEFRAMEFREQ;
-//     negativeconfig.tolerance = NEGATIVETOLERANCE;
-//     negativeconfig.seedpoint = PixelPoint(NEGATIVEX, NEGATIVEY, *negativeconfig.img.getPixel(NEGATIVEX, NEGATIVEY));
-//     negativeconfig.picker = &negativePicker;
+    filler::FillerConfig negativeconfig;
+    negativeconfig.img = negativetest;
+    negativeconfig.frameFreq = NEGATIVEFRAMEFREQ;
+    negativeconfig.tolerance = NEGATIVETOLERANCE;
+    negativeconfig.seedpoint = PixelPoint(NEGATIVEX, NEGATIVEY, *negativeconfig.img.getPixel(NEGATIVEX, NEGATIVEY));
+    negativeconfig.picker = &negativePicker;
 
-//     animation anim;
-//     anim = filler::FillDFS(negativeconfig);
-//     PNG result = anim.write("images/dfsnegative.gif");
-//     result.writeToFile("images/dfsnegative.png");
+    animation anim;
+    anim = filler::FillDFS(negativeconfig);
+    PNG result = anim.write("images/dfsnegative.gif");
+    result.writeToFile("images/dfsnegative.png");
 
-//     PNG expected; expected.readFromFile("soln_images/dfsnegative.png");
-//     REQUIRE(result == expected);
-// }
+    PNG expected; expected.readFromFile("soln_images/dfsnegative.png");
+    REQUIRE(result == expected);
+}
 
-// TEST_CASE("fill::basic negative bfs", "[weight=1][part=fill]") {
-//     PNG negativetest;
-//     negativetest.readFromFile(NEGATIVETESTIMAGE);
-//     NegativeColorPicker negativePicker(negativetest);
+TEST_CASE("fill::basic negative bfs", "[weight=1][part=fill]") {
+    PNG negativetest;
+    negativetest.readFromFile(NEGATIVETESTIMAGE);
+    NegativeColorPicker negativePicker(negativetest);
 
-//     filler::FillerConfig negativeconfig;
-//     negativeconfig.img = negativetest;
-//     negativeconfig.frameFreq = NEGATIVEFRAMEFREQ;
-//     negativeconfig.tolerance = NEGATIVETOLERANCE;
-//     negativeconfig.seedpoint = PixelPoint(NEGATIVEX, NEGATIVEY, *negativeconfig.img.getPixel(NEGATIVEX, NEGATIVEY));
-//     negativeconfig.picker = &negativePicker;
+    filler::FillerConfig negativeconfig;
+    negativeconfig.img = negativetest;
+    negativeconfig.frameFreq = NEGATIVEFRAMEFREQ;
+    negativeconfig.tolerance = NEGATIVETOLERANCE;
+    negativeconfig.seedpoint = PixelPoint(NEGATIVEX, NEGATIVEY, *negativeconfig.img.getPixel(NEGATIVEX, NEGATIVEY));
+    negativeconfig.picker = &negativePicker;
 
-//     animation anim;
-//     anim = filler::FillBFS(negativeconfig);
-//     PNG result = anim.write("images/bfsnegative.gif");
-//     result.writeToFile("images/bfsnegative.png");
+    animation anim;
+    anim = filler::FillBFS(negativeconfig);
+    PNG result = anim.write("images/bfsnegative.gif");
+    result.writeToFile("images/bfsnegative.png");
 
-//     PNG expected; expected.readFromFile("soln_images/bfsnegative.png");
-//     REQUIRE(result == expected);
-// }
+    PNG expected; expected.readFromFile("soln_images/bfsnegative.png");
+    REQUIRE(result == expected);
+}
 
 // TEST_CASE("fill::basic censor dfs","[weight=1][part=fill]"){
 //     PNG imgtest;

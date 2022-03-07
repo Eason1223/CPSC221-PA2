@@ -161,7 +161,7 @@ template <template <class T> class OrderingStructure> animation filler::Fill(Fil
       }
 
       //change pixel
-      HSLAPixel color=config.picker->operator()(config.seedpoint);
+      HSLAPixel color=config.picker->operator()(p);
       config.img.getPixel(p.x,p.y)->h=color.h;
       config.img.getPixel(p.x,p.y)->s=color.s;
       config.img.getPixel(p.x,p.y)->l=color.l;
@@ -185,8 +185,8 @@ bool filler::checkExist(vector<PixelPoint> processed, PixelPoint p){
   
   bool exist = false;
   
-  for (int i = 0; i < processed.size(); i++){
-    if(processed[i] == p){
+  for (unsigned long i = 0; i < processed.size(); i++){
+    if(processed[i].x == p.x && processed[i].y == p.y){
       exist = true;
     }
   }
