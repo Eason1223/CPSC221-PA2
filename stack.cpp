@@ -68,40 +68,28 @@ void Stack<T>::Push(const T& item) {
 *
 *  RETURN: the element that used to be at the top of the Stack.
 */
-// template <class T>
-// T Stack<T>::Pop() {
-//   // complete your implementation below
-//   num_items--;
-//   T item = items[ num_items ];
-//   items[ num_items ] = NULL;
-
-//   if( (num_items)/(max_items) < (1.0 / SHRINKRATE) ){
-//     if((max_items / EXPANSIONFACTOR)>DEFAULTCAPACITY){
-//       Resize((max_items / EXPANSIONFACTOR));
-//     }
-//     else{
-//       Resize(DEFAULTCAPACITY);
-//     }
-    
-    
-//   }   
-//   return item;
-// };
-
 template <class T>
 T Stack<T>::Pop() {
   // complete your implementation below
-  T item=items[Size()-1];
-  items[Size()-1]=NULL;
-  num_items--;
-  if(num_items<(1.0/SHRINKRATE)*Capacity()){
-    size_t newsize=fmax(max_items/EXPANSIONFACTOR,DEFAULTCAPACITY);
-    Resize(newsize);
-  }
-  /*T item;      // REPLACE THESE LINES*/
+  
+  T item = items[ num_items-1 ];
 
-  return item; // REPLACE THESE LINES
+  items[ num_items-1 ] = NULL;
+  num_items--;
+
+  if( (num_items) < (1.0 / SHRINKRATE)*Capacity() ){
+    if((max_items / EXPANSIONFACTOR)>DEFAULTCAPACITY){
+      Resize((max_items / EXPANSIONFACTOR));
+    }
+    else{
+      Resize(DEFAULTCAPACITY);
+    }
+    
+    
+  }   
+  return item;
 };
+
 
 /*
 *  Adds the given element to the ordering structure.
