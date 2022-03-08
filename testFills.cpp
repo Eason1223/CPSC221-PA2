@@ -129,18 +129,18 @@ TEST_CASE("colorPicker::basic negative","[weight=1][part=colorPicker]"){
     REQUIRE(result == expected);
 }
 
-// TEST_CASE("colorPicker::basic censor", "[weight=1][part=colorPicker]") {
+TEST_CASE("colorPicker::basic censor", "[weight=1][part=colorPicker]") {
   
-//   PNG imgtest;
-//   imgtest.readFromFile(CENSORTESTIMAGE);
+  PNG imgtest;
+  imgtest.readFromFile(CENSORTESTIMAGE);
 
-//   CensorColorPicker censorPicker(CENSORWIDTH, PixelPoint(CENSORX, CENSORY, HSLAPixel()), CENSORRADIUS, imgtest);
+  CensorColorPicker censorPicker(CENSORWIDTH, PixelPoint(CENSORX, CENSORY, HSLAPixel()), CENSORRADIUS, imgtest);
 
-//   PNG result = testColorPicker(censorPicker);
-//   result.writeToFile("images/censorColorPickerTest.png");
-//   PNG expected; expected.readFromFile("soln_images/censorColorPickerTest.png");
-//   REQUIRE(result == expected);
-// }
+  PNG result = testColorPicker(censorPicker);
+  result.writeToFile("images/censorColorPickerTest.png");
+  PNG expected; expected.readFromFile("soln_images/censorColorPickerTest.png");
+  REQUIRE(result == expected);
+}
 
 TEST_CASE("colorPicker::basic rainbow","[weight=1][part=colorPicker]"){
     RainbowColorPicker rainPicker(1.0/1000.0);
@@ -287,47 +287,47 @@ TEST_CASE("fill::basic negative bfs", "[weight=1][part=fill]") {
     REQUIRE(result == expected);
 }
 
-// TEST_CASE("fill::basic censor dfs","[weight=1][part=fill]"){
-//     PNG imgtest;
-//     imgtest.readFromFile(CENSORTESTIMAGE);
-//     CensorColorPicker censorPicker(CENSORWIDTH, PixelPoint(CENSORX, CENSORY, HSLAPixel()), CENSORRADIUS, imgtest);
+TEST_CASE("fill::basic censor dfs","[weight=1][part=fill]"){
+    PNG imgtest;
+    imgtest.readFromFile(CENSORTESTIMAGE);
+    CensorColorPicker censorPicker(CENSORWIDTH, PixelPoint(CENSORX, CENSORY, HSLAPixel()), CENSORRADIUS, imgtest);
 
-//     filler::FillerConfig censorconfig;
-//     censorconfig.img = imgtest;
-//     censorconfig.frameFreq = CENSORFRAMEFREQ;
-//     censorconfig.tolerance = CENSORTOLERANCE;
-//     censorconfig.seedpoint = PixelPoint(CENSORX, CENSORY, *censorconfig.img.getPixel(CENSORX, CENSORY));
-//     censorconfig.picker = &censorPicker;
+    filler::FillerConfig censorconfig;
+    censorconfig.img = imgtest;
+    censorconfig.frameFreq = CENSORFRAMEFREQ;
+    censorconfig.tolerance = CENSORTOLERANCE;
+    censorconfig.seedpoint = PixelPoint(CENSORX, CENSORY, *censorconfig.img.getPixel(CENSORX, CENSORY));
+    censorconfig.picker = &censorPicker;
 
-//     animation anim;
-//     anim = filler::FillDFS(censorconfig);
-//     PNG result = anim.write("images/dfscensor.gif");
-//     result.writeToFile("images/dfscensor.png");
+    animation anim;
+    anim = filler::FillDFS(censorconfig);
+    PNG result = anim.write("images/dfscensor.gif");
+    result.writeToFile("images/dfscensor.png");
 
-//     PNG expected; expected.readFromFile("soln_images/dfscensor.png");
-//     REQUIRE(result==expected);
-// }
+    PNG expected; expected.readFromFile("soln_images/dfscensor.png");
+    REQUIRE(result==expected);
+}
 
-// TEST_CASE("fill::basic censor bfs","[weight=1][part=fill]"){
-//     PNG imgtest;
-//     imgtest.readFromFile(CENSORTESTIMAGE);
-//     CensorColorPicker censorPicker(CENSORWIDTH, PixelPoint(CENSORX, CENSORY, HSLAPixel()), CENSORRADIUS, imgtest);
+TEST_CASE("fill::basic censor bfs","[weight=1][part=fill]"){
+    PNG imgtest;
+    imgtest.readFromFile(CENSORTESTIMAGE);
+    CensorColorPicker censorPicker(CENSORWIDTH, PixelPoint(CENSORX, CENSORY, HSLAPixel()), CENSORRADIUS, imgtest);
 
-//     filler::FillerConfig censorconfig;
-//     censorconfig.img = imgtest;
-//     censorconfig.frameFreq = CENSORFRAMEFREQ;
-//     censorconfig.tolerance = CENSORTOLERANCE;
-//     censorconfig.seedpoint = PixelPoint(CENSORX, CENSORY, *censorconfig.img.getPixel(CENSORX, CENSORY));
-//     censorconfig.picker = &censorPicker;
+    filler::FillerConfig censorconfig;
+    censorconfig.img = imgtest;
+    censorconfig.frameFreq = CENSORFRAMEFREQ;
+    censorconfig.tolerance = CENSORTOLERANCE;
+    censorconfig.seedpoint = PixelPoint(CENSORX, CENSORY, *censorconfig.img.getPixel(CENSORX, CENSORY));
+    censorconfig.picker = &censorPicker;
 
-//     animation anim;
-//     anim = filler::FillBFS(censorconfig);
-//     PNG result = anim.write("images/bfscensor.gif");
-//     result.writeToFile("images/bfscensor.png");
+    animation anim;
+    anim = filler::FillBFS(censorconfig);
+    PNG result = anim.write("images/bfscensor.gif");
+    result.writeToFile("images/bfscensor.png");
 
-//     PNG expected; expected.readFromFile("soln_images/bfscensor.png");
-//     REQUIRE(result==expected);
-// }
+    PNG expected; expected.readFromFile("soln_images/bfscensor.png");
+    REQUIRE(result==expected);
+}
 
 // TEST_CASE("fill::basic rainbow dfs","[weight=1][part=fill]"){
 
